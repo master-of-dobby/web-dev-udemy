@@ -1,17 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import inquirer from "inquirer";
+import qr from "qr-image";
+import fs from "fs";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// var qr = require("qr-image");
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+inquirer
+  .prompt([{ message: "Type in your URL", name: "URL" }])
+  .then((answers) => {
+    console.log(answers);
+    const url = answers.URL;
+    var qr_svg = qr.image(url);
+    qr_svg.pipe(fs.createWriteStream("qr_img.png"));
+  })
+  .catch((error) => {
+    if (error.isTtyError) {
+      // Prompt couldn't be rendered in the current environment
+    } else {
+      // Something else went wrong
+    }
+  });
