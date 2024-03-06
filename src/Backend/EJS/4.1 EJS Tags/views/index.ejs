@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EJS Tags</title>
+  </head>
+
+  <body>
+    <h1>
+      <!-- Tite goes here -->
+      <% if (typeof title !== 'undefined') { %> <%= title %> <% } else { %>
+      Welcome to EJS! <%}%>
+    </h1>
+    <p>
+      Current second:
+      <!-- Current second goes here -->
+      <%= seconds %>
+    </p>
+    <% if (seconds % 2===0) { %>
+      <% for(let i = 0; i<items.length; i++) { %>
+        <li><%= items[i] %></li>
+        <%# items.forEach((fruit) => print(fruti))%>
+      <% } }  else { %>
+        <p>No Contents to Display </p> 
+      <% } %>
+      
+    
+    <p>
+      <!-- HTML content goes here -->
+      This  is some <strong>bold</strong> and <em>italic</em> text.
+      <% - htmlContent %>
+    </p>
+    <%- include("footer.ejs") %>
+    <!-- Footer goes here -->
+  </body>
+</html>
